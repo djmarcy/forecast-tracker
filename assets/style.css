@@ -5,6 +5,9 @@
 
 body {
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -15,8 +18,48 @@ header {
     padding: 30px;
 }
 
+aside,
+section {
+    margin: 30px;
+}
+
+.search-bar {
+    width: 25%;
+    margin: 30px
+}
+
+.forecast-container {
+    width: 75%;
+    margin: 30px;
+}
+
+.forecast-columns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.weekly-forecast {
+    height: 100%;
+    width: 19%;
+    margin-top: 15px;
+}
+
+#todays-weather,
+.forecast-columns {
+    height: 50%;
+}
+
+#todays-weather,
+.weekly-forecast {
+    border: solid darkslategray 2px;
+}
+
 h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
+}
+
+.spacer {
+    flex-grow: 1;
 }
 
 footer {
