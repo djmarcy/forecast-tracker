@@ -23,6 +23,34 @@ section {
     margin: 30px;
 }
 
+aside {
+    border: solid darkslategray 2px;
+    padding: 30px;
+    text-align: center;
+}
+
+input {
+    margin: 35px auto 20px;
+    display: block;
+    height: 40px;
+    width: 75%;
+}
+
+.btn {
+    display: block;
+    background-color: darkslategray;
+    border: solid 1.5px darkslategray;
+    color: antiquewhite;
+    padding: 10px 30px;
+    margin: 0 auto;
+}
+
+.btn:hover {
+    border: solid 1.5px darkslategray;
+    background-color: antiquewhite;
+    color: darkslategray;
+}
+
 .search-bar {
     width: 25%;
     margin: 30px
