@@ -51,6 +51,12 @@ input {
     color: darkslategray;
 }
 
+.btn:focus {
+    border: solid 1.5px darkslategray;
+    background-color: antiquewhite;
+    color: darkslategray;
+}
+
 .search-bar {
     width: 25%;
     margin: 30px
@@ -72,12 +78,12 @@ input {
     margin-top: 15px;
 }
 
-#todays-weather,
+#today-weather,
 .forecast-columns {
     height: 50%;
 }
 
-#todays-weather,
+#today-weather,
 .weekly-forecast {
     border: solid darkslategray 2px;
 }
