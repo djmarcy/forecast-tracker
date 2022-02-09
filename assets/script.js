@@ -2,6 +2,7 @@
 let getCity = document.getElementById("city-search");
 let previousSearches = document.getElementById("previous-searches");
 let searchBtn = document.getElementById("search-btn");
+let searchPersistent = []
 
 // "Today" forecast hooks
 let todayWeather = document.getElementById("today-weather");
@@ -98,16 +99,24 @@ function searchCity() {
         });
     });
 
+    storeSearches(getCity);
 }
 
+// Get searches on page load
+getSearches();
 
 // Store/retrieve persistent data
-function storeSearches() {
-let searchPersistent = []
+function storeSearches(city) {
+searchPersistent.unshift(city.value)
+localStorage.setItem("Prev. Searches:", JSON.stringify(searchPersistent))
+console.log(searchPersistent);
+getSearches();
+}
 
-// searchPersistent.push()
-console.log(searchPersistent)
-
+function getSearches() {
+  for (l = 0; l < 5; l++) { 
+    console.log(localStorage.getItem())
+  }
 }
 
 // Add click/submit events to search bar
