@@ -71,6 +71,7 @@ input {
 #today-city {
   margin-bottom: 0;
 }
+
 #today-date {
   margin: 0 0 15px;
   font-size: 1.5rem;
@@ -92,13 +93,32 @@ input {
 }
 
 #today-weather,
-.forecast-columns {
-  height: 50%;
-}
-
-#today-weather,
 .weekly-forecast {
   border: solid darkslategray 2px;
+  padding: 30px;
+  min-height: 75px;
+}
+
+.green,
+.yellow,
+.red {
+  width: auto;
+  padding: 5px 15px;
+  margin-top: 5px;
+}
+
+.red {
+  background-color: darkred;
+  color: white;
+
+}
+
+.yellow {
+  background-color: orange;
+}
+
+.green {
+  background-color: lightgreen;
 }
 
 h1 {

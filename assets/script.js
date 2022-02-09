@@ -7,6 +7,7 @@ let searchBtn = document.getElementById("search-btn");
 let todayWeather = document.getElementById("today-weather");
 let todayCity = document.getElementById("today-city");
 let todayDate = document.getElementById("today-date");
+let todayIcon = document.getElementById("today-icon")
 let todayTemp = document.getElementById("today-temp");
 let todayWind = document.getElementById("today-wind");
 let todayHumidity = document.getElementById("today-humidity");
@@ -14,7 +15,7 @@ let todayUV = document.getElementById("today-uv");
 
 // Weekly forecast hooks
 let weeklyForecast = document.getElementsByClassName("weekly-forecast");
-let forecastAttr = document.querySelectorAll("[data-forecast]");
+let forecastAttr = document.querySelectorAll(".weekly-forecast")
 
 // Fetch data from API
 function searchCity() {
@@ -49,16 +50,65 @@ function searchCity() {
 
           todayCity.textContent = getCity.value;
           todayDate.textContent = moment().format("MMMM Do YYYY");
+          todayIcon.className = "visible";
+          todayIcon.setAttribute("src", "http://openweathermap.org/img/w/" + info.current.weather[0].icon + ".png");
           todayTemp.textContent = "Temperature: " + info.current.temp + " °F";
           todayWind.textContent = "Wind: " + info.current.wind_speed + " MPH";
           todayHumidity.textContent =
             "Humidity: " + info.current.humidity + "%";
           todayUV.textContent = "UVI: " + info.current.uvi;
+          let currentUVI = info.current.uvi
+          if (6 < currentUVI) {
+            todayUV.setAttribute("class", "red")
+          } else if (2 < currentUVI && currentUVI < 6) {
+            todayUV.setAttribute("class", "yellow")
+          } else {
+            todayUV.setAttribute("class", "green")
+          }
+
+          for (i = 0; i < 5; i++) {
+            let forecastDate = document.getElementById("date" + i)
+            let forecastIcon = document.getElementById("icon" + i)
+            let forecastTemp = document.getElementById("temp" + i)
+            let forecastWind = document.getElementById("wind" + i)
+            let forecastHumidity = document.getElementById("humidity" + i)
+            let forecastUVI = document.getElementById("uvi" + i)
+
+            let unix = info.daily[i + 1].dt * 1000;
+            let date = new Date(unix)
+            let displayDate = date.toLocaleDateString();
+
+            forecastDate.textContent = displayDate
+            forecastIcon.setAttribute("src", "http://openweathermap.org/img/w/" + info.daily[i + 1].weather[0].icon + ".png");
+            forecastTemp.textContent = "Temperature: " + info.daily[i + 1].temp.day + " °F";
+            forecastWind.textContent = "Wind: " + info.daily[i + 1].wind_speed + " MPH";
+            forecastHumidity.textContent =
+              "Humidity: " + info.daily[i + 1].humidity + "%";
+            forecastUVI.textContent = "UVI: " + info.daily[i + 1].uvi;
+            let uvi = info.daily[i + 1].uvi
+            if (6 < uvi) {
+              forecastUVI.setAttribute("class", "red")
+            } else if (2 < uvi && uvi < 6) {
+              forecastUVI.setAttribute("class", "yellow")
+            } else {
+              forecastUVI.setAttribute("class", "green")
+            }
+          }
+
         });
     });
+
 }
 
+
 // Store/retrieve persistent data
+function storeSearches() {
+let searchPersistent = []
+
+// searchPersistent.push()
+console.log(searchPersistent)
+
+}
 
 // Add click/submit events to search bar
 searchBtn.addEventListener("click", searchCity);
