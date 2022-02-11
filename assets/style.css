@@ -129,6 +129,10 @@ h1 {
   flex-grow: 1;
 }
 
+.prev-searches {
+  margin-bottom: 5px;
+}
+
 footer {
   background-color: darkslategray;
   color: antiquewhite;

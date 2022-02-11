@@ -2,7 +2,6 @@
 let getCity = document.getElementById("city-search");
 let previousSearches = document.getElementById("previous-searches");
 let searchBtn = document.getElementById("search-btn");
-let searchPersistent = []
 
 // "Today" forecast hooks
 let todayWeather = document.getElementById("today-weather");
@@ -19,14 +18,21 @@ let weeklyForecast = document.getElementsByClassName("weekly-forecast");
 let forecastAttr = document.querySelectorAll(".weekly-forecast")
 
 // Fetch data from API
-function searchCity() {
+function searchCity(city) {
+  let cityName = null;
+
+  if (getCity.value !== null) {
+    cityName = getCity.value
+  } else {
+    cityName = city
+  }
   let lat = null;
   let lon = null;
 
   //Find latitude/longitude coordinates
   fetch(
     "http://api.openweathermap.org/geo/1.0/direct?q=" +
-      getCity.value +
+      cityName +
       "&limit=1&appid=8e5e96e8cc07870eacb4b25b2b4d4ab6"
   )
     .then((data) => {
@@ -107,15 +113,34 @@ getSearches();
 
 // Store/retrieve persistent data
 function storeSearches(city) {
+let searchPersistent = localStorage.getItem("Prev. Searches:") || []
+searchPersistent = JSON.parse(searchPersistent)
+console.log(searchPersistent)
 searchPersistent.unshift(city.value)
 localStorage.setItem("Prev. Searches:", JSON.stringify(searchPersistent))
 console.log(searchPersistent);
 getSearches();
 }
 
+// Load searches on page load & on
 function getSearches() {
-  for (l = 0; l < 5; l++) { 
-    console.log(localStorage.getItem())
+  if (localStorage.getItem("Prev. Searches:")) {
+    // Clear "Previous Searchs" div so content isn't repeated
+    previousSearches.innerHTML = null;
+    let getPrev = localStorage.getItem("Prev. Searches:")
+    getPrev = JSON.parse(getPrev)
+
+    for (l = 0; l < 10; l++) { 
+      
+      let searchParagraph = document.createElement("button")
+      searchParagraph.setAttribute("class", "prev-searches btn btn-primary")
+      searchParagraph.setAttribute("type", "button")
+      searchParagraph.setAttribute("id", "search" + l)
+      searchParagraph.textContent = getPrev[l]
+      previousSearches.appendChild(searchParagraph)
+
+      searchParagraph.addEventListener("submit", searchCity(getPrev[l]))
+    }
   }
 }
 
