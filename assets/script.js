@@ -21,8 +21,8 @@ let forecastAttr = document.querySelectorAll(".weekly-forecast")
 
 // Fetch data from API
 function searchCity() {
-  let city = getCity.value
 
+  let city = getCity.value || this.textContent
   // Set variables to null to enable sidebar buttons
   let lat = null;
   let lon = null;
@@ -102,8 +102,11 @@ function searchCity() {
 
         });
     });
-      storeSearches(getCity);
-      getCity.value = null;
+
+      if (getCity.value) {
+        storeSearches(getCity);
+        getCity.value = null;
+    }
 }
 
 // Get searches on page load
