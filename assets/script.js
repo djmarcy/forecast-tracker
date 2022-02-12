@@ -21,7 +21,7 @@ let forecastAttr = document.querySelectorAll(".weekly-forecast")
 
 // Fetch data from API
 function searchCity() {
-  let city = getCity.value || EventTarget.textContent
+  let city = getCity.value
 
   // Set variables to null to enable sidebar buttons
   let lat = null;
@@ -53,7 +53,7 @@ function searchCity() {
         .then((info) => {
           console.log(info);
 
-          todayCity.textContent = getCity.value;
+          todayCity.textContent = city;
           todayDate.textContent = moment().format("MMMM Do YYYY");
           todayIcon.className = "visible";
           todayIcon.setAttribute("src", "http://openweathermap.org/img/w/" + info.current.weather[0].icon + ".png");
@@ -102,8 +102,8 @@ function searchCity() {
 
         });
     });
-
       storeSearches(getCity);
+      getCity.value = null;
 }
 
 // Get searches on page load
@@ -114,6 +114,11 @@ getSearches();
 
 // Store/retrieve persistent data
 function storeSearches(getCity) {
+
+  console.log(getCity.value)
+  if (getCity == "") {
+    return;
+  }
 
   let searchPersistent = JSON.parse(localStorage.getItem("Prev. Searches:")) || []
 
