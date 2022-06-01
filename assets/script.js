@@ -29,7 +29,7 @@ function searchCity() {
 
   //Find latitude/longitude coordinates
   fetch(
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
     city +
       "&limit=1&appid=8e5e96e8cc07870eacb4b25b2b4d4ab6"
    )
@@ -41,7 +41,7 @@ function searchCity() {
       lon = data[0].lon;
 
       fetch(
-        "http://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=" +
+        "https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=" +
           lat +
           "&lon=" +
           lon +
@@ -56,7 +56,7 @@ function searchCity() {
           todayCity.textContent = city;
           todayDate.textContent = moment().format("MMMM Do YYYY");
           todayIcon.className = "visible";
-          todayIcon.setAttribute("src", "http://openweathermap.org/img/w/" + info.current.weather[0].icon + ".png");
+          todayIcon.setAttribute("src", "https://openweathermap.org/img/w/" + info.current.weather[0].icon + ".png");
           todayTemp.textContent = "Temperature: " + info.current.temp + " °F";
           todayWind.textContent = "Wind: " + info.current.wind_speed + " MPH";
           todayHumidity.textContent =
@@ -84,7 +84,7 @@ function searchCity() {
             let displayDate = date.toLocaleDateString();
 
             forecastDate.textContent = displayDate
-            forecastIcon.setAttribute("src", "http://openweathermap.org/img/w/" + info.daily[i + 1].weather[0].icon + ".png");
+            forecastIcon.setAttribute("src", "https://openweathermap.org/img/w/" + info.daily[i + 1].weather[0].icon + ".png");
             forecastTemp.textContent = "Temperature: " + info.daily[i + 1].temp.day + " °F";
             forecastWind.textContent = "Wind: " + info.daily[i + 1].wind_speed + " MPH";
             forecastHumidity.textContent =
