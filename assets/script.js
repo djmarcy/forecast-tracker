@@ -41,7 +41,7 @@ function searchCity() {
       lon = data[0].lon;
 
       fetch(
-        "https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=" +
+        "http://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=" +
           lat +
           "&lon=" +
           lon +
