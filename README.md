@@ -10,7 +10,7 @@ Weather Forecast dashboard that includes:
 
 ## Visuals
 
-![Forecast dashboard (Live)](.\assets\imgs\dashboard.png)
+[Weather Dashboard in action](https://drive.google.com/file/d/1COfSma3e4E8p4IqsYXhn2nuLuwRlW7gc/view)
 
 ## Installation
 
